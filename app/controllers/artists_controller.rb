@@ -1,6 +1,10 @@
 class ArtistsController < ApplicationController
   def index
+    preference = Preference.lase
     @artists = Artist.all
+    if !preference.nil?
+      @artists = sort_artists(preference, @artist)
+    end
   end
 
   def show

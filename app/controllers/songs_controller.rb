@@ -29,7 +29,16 @@ class SongsController < ApplicationController
   end
 
   def new
-    @song = Song.new
+    preference = Preference.last
+    if !preference.nil?
+      if preference.allow_create_songs
+        @song = Song.new(artist_id: params[:artist_id])
+      else
+        redirect_to songs_path
+      end
+    else
+      @song = Song.new(artist_id: params[:artist_id])
+    end
   end
 
   def create

@@ -11,6 +11,9 @@ class SongsController < ApplicationController
     else
       @songs = Song.all
     end
+    if !preference.nil?
+      @songs = sort_songs(preference, @songs)
+    end
   end
 
   def show

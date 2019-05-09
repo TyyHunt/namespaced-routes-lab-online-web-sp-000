@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   def index
-    preference = Preference.lase
+    preference = Preference.last
     @artists = Artist.all
     if !preference.nil?
       @artists = sort_artists(preference, @artist)
